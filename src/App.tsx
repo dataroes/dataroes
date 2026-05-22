@@ -17,6 +17,7 @@ import { ContactForm } from './components/ContactForm';
 import { AboutUsPage } from './pages/AboutUsPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfServicePage } from './pages/TermsOfServicePage';
+import { SuccessPage } from './pages/SuccessPage';
 
 function HomePage() {
   return (
@@ -46,6 +47,7 @@ export function App() {
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsOfServicePage />} />
+        <Route path="/success" element={<SuccessPage />} />
       </Routes>
     </BrowserRouter>
   );

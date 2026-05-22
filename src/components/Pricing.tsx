@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+);
+
 const plans = [
 {
   name: 'Starter',
@@ -14,7 +20,8 @@ const plans = [
   'Email support'],
 
   cta: 'Get Started',
-  style: 'outline'
+  style: 'outline',
+  priceId: 'price_1TZos4AuA9eEFd62starter'
 },
 {
   name: 'Growth',
@@ -29,7 +36,8 @@ const plans = [
   'Priority support'],
 
   cta: 'Start Free Trial',
-  style: 'popular'
+  style: 'popular',
+  priceId: 'price_1TZos4AuA9eEFd62growth'
 },
 {
   name: 'Enterprise',
@@ -48,6 +56,47 @@ const plans = [
 }];
 
 export function Pricing() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleCheckout = async (priceId?: string) => {
+    if (!priceId) {
+      // Contact sales flow
+      window.location.href = 'mailto:support@dataroes.com?subject=Enterprise%20Plan%20Inquiry';
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const stripe = await stripePromise;
+
+      if (!stripe) {
+        console.error('Stripe failed to load');
+        return;
+      }
+
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [
+          {
+            price: priceId,
+            quantity: 1,
+          },
+        ],
+        mode: 'subscription',
+        successUrl: `${window.location.origin}/success`,
+        cancelUrl: `${window.location.origin}/pricing`,
+      });
+
+      if (error) {
+        console.error('Error redirecting to checkout:', error);
+        alert('Failed to redirect to checkout. Please try again.');
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <section className="py-24 bg-offwhite" id="pricing">
       <div className="max-w-6xl mx-auto px-6">
@@ -176,9 +225,11 @@ export function Pricing() {
                   whileTap={{
                     scale: 0.98
                   }}
-                  className={`w-full py-3 rounded-lg font-semibold mb-8 transition-all ${plan.style === 'popular' ? 'btn-shimmer text-white bg-cobalt shadow-lg shadow-cobalt/25 hover:shadow-cobalt/40' : plan.style === 'navy' ? 'text-white bg-navy-800 hover:bg-navy-900' : 'text-primary border border-slate-200 hover:bg-slate-50'}`}>
+                  onClick={() => handleCheckout(plan.priceId)}
+                  disabled={isLoading}
+                  className={`w-full py-3 rounded-lg font-semibold mb-8 transition-all disabled:opacity-60 disabled:cursor-not-allowed ${plan.style === 'popular' ? 'btn-shimmer text-white bg-cobalt shadow-lg shadow-cobalt/25 hover:shadow-cobalt/40' : plan.style === 'navy' ? 'text-white bg-navy-800 hover:bg-navy-900' : 'text-primary border border-slate-200 hover:bg-slate-50'}`}>
                   
-                  {plan.cta}
+                  {isLoading ? 'Processing...' : plan.cta}
                 </motion.button>
                 <ul className="space-y-4">
                   {plan.features.map((feature, i) =>
