@@ -105,7 +105,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-500">
-            © 2025 Dataroes. All rights reserved.
+            © 2026 Dataroes. All rights reserved.
           </p>
           <div className="bg-teal/10 border border-teal/20 px-3 py-1 rounded-full">
             <span className="font-mono text-xs text-teal uppercase tracking-wider">

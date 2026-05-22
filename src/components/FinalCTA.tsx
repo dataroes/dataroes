@@ -146,18 +146,21 @@ export function FinalCTA() {
           }}
           className="flex flex-wrap justify-center gap-4 mb-16">
           
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              y: -2
+          <motion.a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('contact');
+              if (!el) return;
+              const offset = 88;
+              const top = el.getBoundingClientRect().top + window.scrollY - offset;
+              window.scrollTo({ top, behavior: 'smooth' });
             }}
-            whileTap={{
-              scale: 0.97
-            }}
-            className="btn-shimmer bg-cobalt text-white px-8 py-4 rounded-xl font-semibold shadow-[0_10px_40px_rgba(26,107,255,0.4)] hover:shadow-[0_15px_50px_rgba(26,107,255,0.6)] transition-shadow text-lg">
-            
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="btn-shimmer bg-cobalt text-white px-8 py-4 rounded-xl font-semibold shadow-[0_10px_40px_rgba(26,107,255,0.4)] hover:shadow-[0_15px_50px_rgba(26,107,255,0.6)] transition-shadow text-lg inline-block text-center">
             Request a Demo
-          </motion.button>
+          </motion.a>
           <motion.button
             whileHover={{
               scale: 1.05,
