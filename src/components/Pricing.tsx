@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { loadStripe } from '@stripe/stripe-js';
-
-const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-);
+// Checkout Sessions are created server-side. Frontend will call the server endpoint.
 
 const plans = [
 {
@@ -21,7 +17,7 @@ const plans = [
 
   cta: 'Get Started',
   style: 'outline',
-  priceId: 'price_1TZos4AuA9eEFd62starter'
+  priceId: 'price_1TZp88AuA9eEFd62UHv6rybE'
 },
 {
   name: 'Growth',
@@ -37,7 +33,7 @@ const plans = [
 
   cta: 'Start Free Trial',
   style: 'popular',
-  priceId: 'price_1TZos4AuA9eEFd62growth'
+  priceId: 'price_1TZpA9AuA9eEFd6294fDRyWI'
 },
 {
   name: 'Enterprise',
@@ -67,29 +63,19 @@ export function Pricing() {
 
     setIsLoading(true);
     try {
-      const stripe = await stripePromise;
-
-      if (!stripe) {
-        console.error('Stripe failed to load');
-        return;
-      }
-
-      const { error } = await stripe.redirectToCheckout({
-        lineItems: [
-          {
-            price: priceId,
-            quantity: 1,
-          },
-        ],
-        mode: 'subscription',
-        successUrl: `${window.location.origin}/success`,
-        cancelUrl: `${window.location.origin}/pricing`,
+      const resp = await fetch('http://localhost:4242/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId }),
       });
 
-      if (error) {
-        console.error('Error redirecting to checkout:', error);
-        alert('Failed to redirect to checkout. Please try again.');
+      const data = await resp.json();
+      if (!resp.ok) {
+        throw new Error(data.error || 'Failed to create checkout session');
       }
+
+      // Redirect user to the Checkout page returned by Stripe
+      window.location.href = data.url;
     } catch (err) {
       console.error('Checkout error:', err);
       alert('An error occurred. Please try again.');

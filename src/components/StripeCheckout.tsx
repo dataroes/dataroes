@@ -1,43 +1,21 @@
 import React from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-
-const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-);
-
 export function StripeCheckout() {
   const handleCheckout = async (priceId: string) => {
-    const stripe = await stripePromise;
-
-    if (!stripe) {
-      console.error('Stripe failed to load');
-      return;
-    }
-
-    // Redirect to Stripe Hosted Checkout
-    const { error } = await stripe.redirectToCheckout({
-      lineItems: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
-      mode: 'subscription',
-      successUrl: `${window.location.origin}/success`,
-      cancelUrl: `${window.location.origin}/pricing`,
-    });
-
-    if (error) {
-      console.error('Error redirecting to checkout:', error);
+    try {
+      const resp = await fetch('http://localhost:4242/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId }),
+      });
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.error || 'Failed to create session');
+      window.location.href = data.url;
+    } catch (err) {
+      console.error('Checkout error:', err);
     }
   };
 
-  const handleStarterCheckout = () => {
-    // Starter pack - $299/month
-    // Price ID format: price_xxxxx (replace with actual Stripe price ID)
-    // For testing, using a mock price ID - update after creating price in Stripe dashboard
-    handleCheckout('price_1TZos4AuA9eEFd62aBcD1234'); // Replace with actual price ID
-  };
+  const handleStarterCheckout = () => handleCheckout('price_1TZp88AuA9eEFd62UHv6rybE');
 
   return { handleStarterCheckout, handleCheckout };
 }
