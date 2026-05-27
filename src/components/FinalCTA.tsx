@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 export function FinalCTA() {
+  const navigate = useNavigate();
   return (
     <section className="relative py-32 bg-navy-800 bg-grain bg-mesh clip-top overflow-hidden">
       {/* Floating orbs */}
@@ -169,8 +171,9 @@ export function FinalCTA() {
             whileTap={{
               scale: 0.97
             }}
-            className="px-8 py-4 rounded-xl font-semibold text-white border border-white/20 hover:bg-white/5 hover:border-white/40 transition-colors text-lg">
-            
+            className="px-8 py-4 rounded-xl font-semibold text-white border border-white/20 hover:bg-white/5 hover:border-white/40 transition-colors text-lg"
+            onClick={() => navigate('/product')}
+          >
             Explore the Platform
           </motion.button>
         </motion.div>

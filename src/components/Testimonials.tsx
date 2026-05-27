@@ -56,14 +56,15 @@ const settings = {
 };
 
 export default function Testimonials() {
+  let sliderRef = React.useRef(null);
   return (
-    <section className="bg-navy-950 py-16 border-t border-white/10">
-      <div className="max-w-5xl mx-auto px-4">
+    <section className="bg-navy-950 py-16 border-t border-white/10 w-full overflow-x-hidden">
+      <div className="max-w-5xl mx-auto px-2 sm:px-4">
         <h2 className="text-xl md:text-2xl font-bold text-teal mb-6 text-center font-dm">What Our Clients Say</h2>
-        <Slider {...settings}>
+        <Slider ref={sliderRef} {...settings}>
           {testimonials.map((t, i) => (
-            <div key={i} className="px-4">
-              <div className="bg-navy-900 rounded-xl shadow-lg p-6 h-full flex flex-col justify-between border border-white/5">
+            <div key={i} className="px-1 sm:px-4 w-full">
+              <div className="bg-navy-900 rounded-xl shadow-lg p-6 h-full flex flex-col justify-between border border-white/5 min-h-[320px] sm:min-h-[260px]">
                 <FaQuoteLeft className="text-teal text-2xl mb-3" />
                 <p className="text-base text-slate-200 font-medium mb-4">{t.quote}</p>
                 <div>
@@ -74,6 +75,22 @@ export default function Testimonials() {
             </div>
           ))}
         </Slider>
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8 w-full">
+          <button
+            aria-label="Previous testimonial"
+            className="px-5 py-2 rounded border border-slate-300 bg-white text-navy-900 font-medium text-base hover:bg-slate-100 transition-colors"
+            onClick={() => sliderRef.current?.slickPrev()}
+          >
+            &#8592; Prev
+          </button>
+          <button
+            aria-label="Next testimonial"
+            className="px-5 py-2 rounded border border-slate-300 bg-white text-navy-900 font-medium text-base hover:bg-slate-100 transition-colors"
+            onClick={() => sliderRef.current?.slickNext()}
+          >
+            Next &#8594;
+          </button>
+        </div>
       </div>
     </section>
   );

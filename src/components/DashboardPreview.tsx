@@ -6,6 +6,7 @@ export function DashboardPreview() {
     <section
       className="py-32 bg-offwhite overflow-hidden relative"
       id="platform">
+      <div id="security" className="absolute top-0 left-0" />
       
       {/* Decorative grid pattern */}
       <div

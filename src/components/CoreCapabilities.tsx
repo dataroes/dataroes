@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import PredictiveAnalyticsEngine from '../assets/Predictive Analytics Engine.svg';
-import BusinessIntelligenceLayer from '../assets/Business Intelligence Layer.svg';
-import RiskDetectionSystem from '../assets/Risk Detection System.svg';
-import DecisionSupportSystem from '../assets/Decision Support System.svg';
+import PredictiveAnalyticsEngine from '../assets/Predictive Analytics Engine.webp';
+import BusinessIntelligenceLayer from '../assets/Business Intelligence Layer.webp';
+import RiskDetectionSystem from '../assets/Risk Detection System.webp';
+import DecisionSupportSystem from '../assets/Decision Support System.webp';
 export function CoreCapabilities() {
   return (
-    <section className="py-24 bg-offwhite" id="features">
+    <section className="py-24 bg-offwhite" id="models">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div

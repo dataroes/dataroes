@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/Logo.svg';
+import { Footer } from './Footer';
 
 type LegalPageShellProps = {
   eyebrow: string;
@@ -31,21 +32,26 @@ export function LegalPageShell({
         </div>
       </header>
 
-      <section className="py-20 md:py-24">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-20 md:py-24 bg-offwhite">
+        <div className="max-w-5xl mx-auto px-6">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cobalt mb-4">
             {eyebrow}
           </p>
-          <h1 className="font-syne text-4xl md:text-6xl font-bold tracking-tight text-navy-900 max-w-3xl">
+          <h1 className="font-syne text-4xl md:text-6xl font-bold tracking-tight text-navy-900">
             {title}
           </h1>
-          <p className="mt-5 text-slate-600 text-base md:text-lg leading-relaxed max-w-3xl">
+          <p className="mt-5 text-slate-600 text-base md:text-lg leading-relaxed">
             {description}
           </p>
 
-          <div className="mt-12 space-y-6">{children}</div>
+          <div className="mt-12">
+            <div className="rounded-2xl bg-white border border-slate-100 p-8 shadow-sm">
+              {children}
+            </div>
+          </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

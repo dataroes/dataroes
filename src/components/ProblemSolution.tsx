@@ -15,7 +15,7 @@ const solutions = [
 
 export function ProblemSolution() {
   return (
-    <section className="py-24 bg-offwhite relative z-0">
+    <section id="integrations" className="py-24 bg-offwhite relative z-0">
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 md:gap-0 relative">
           {/* Vertical Divider (Desktop) */}

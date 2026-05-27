@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { motion } from 'framer-motion';
-import EnterpriseDataSources from '../assets/Enterprise Data Sources.svg';
-import IngestionLayer from '../assets/Ingestion Layer.svg';
-import AIPredictiveModels from '../assets/AI Predictive Models.svg';
-import IntelligenceEngine from '../assets/Intelligence Engine.svg';
-import ExecutiveDashboard from '../assets/Executive Dashboard.svg';
+import EnterpriseDataSources from '../assets/Enterprise Data Sources.webp';
+import IngestionLayer from '../assets/Ingestion Layer.webp';
+import AIPredictiveModels from '../assets/AI Predictive Models.webp';
+import IntelligenceEngine from '../assets/Intelligence Engine.webp';
+import ExecutiveDashboard from '../assets/Executive Dashboard.webp';
 import { CountUp } from './ui/CountUp';
 const nodes = [
   {

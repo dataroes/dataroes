@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
-import financeTeamsImg from '../assets/Finance Teams.svg';
-import operationsImg from '../assets/Operations.svg';
-import saasCompaniesImg from '../assets/SaaS Companies.svg';
-import dataDepartmentsImg from '../assets/Data Departments.svg';
-import strategyPlanningImg from '../assets/Strategy Planning.svg';
+import financeTeamsImg from '../assets/Finance Teams.webp';
+import operationsImg from '../assets/Operations.webp';
+import saasCompaniesImg from '../assets/SaaS Companies.webp';
+import dataDepartmentsImg from '../assets/Data Departments.webp';
+import strategyPlanningImg from '../assets/Strategy Planning.webp';
 const tabs = [
 {
   id: 'finance',

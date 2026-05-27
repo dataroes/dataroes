@@ -1,0 +1,16 @@
+# SPA fallback for Apache: rewrite unknown routes to index.html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # If the requested file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise rewrite all requests to index.html (front-end router handles routing)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Prevent directory listings
+Options -Indexes
