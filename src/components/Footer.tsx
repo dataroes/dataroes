@@ -20,13 +20,10 @@ export function Footer() {
               <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">
                 Company
               </div>
-              <div className="text-sm">
-                <span className="font-semibold text-white">Founder:</span> Akcent Sina
-              </div>
               <div className="text-sm"><span className="font-semibold text-white">Founded:</span> Oct 18, 2022</div>
               <div className="text-sm"><span className="font-semibold text-white">Main branch:</span> 1380 Market Street, Suite 200, San Francisco, CA</div>
               <div className="text-sm"><span className="font-semibold text-white">Sub branch:</span> No 50, Highlevel Rd, Nugegoda</div>
-              <div className="text-sm"><span className="font-semibold text-white">Phone:</span> <a href="tel:1-877-419-2903" className="text-slate-300 hover:text-white">1-877-419-2903</a></div>
+              <div className="text-sm"><span className="font-semibold text-white">Phone:</span> <a href="tel:+94789638653" className="text-slate-300 hover:text-white">+94789638653</a></div>
             </div>
           </div>
 

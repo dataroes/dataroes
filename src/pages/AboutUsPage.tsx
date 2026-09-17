@@ -31,7 +31,6 @@ export function AboutUsPage() {
         <p className="text-slate-700 mb-2">Founded in 2022 in San Francisco, Dataroes was created to help organizations unlock the full value of their data. Our team brings together expertise in AI, cloud infrastructure, and enterprise software to deliver solutions that are both powerful and easy to use.</p>
         <ul className="mt-4 space-y-2 text-slate-700 list-disc list-inside">
           <li>Headquartered at 1380 Market Street, Suite 200, San Francisco, CA</li>
-          <li>Founder: Akcent Sina</li>
           <li>Contact: <a href="mailto:support@dataroes.com" className="text-blue-600 hover:underline">support@dataroes.com</a></li>
         </ul>
       </section>
